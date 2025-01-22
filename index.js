@@ -2,13 +2,13 @@ const express = require("express");
 
 const app = express();
 
-app.use(
-  express.static(`${__dirname}/public/`, {
-    index: "home.html",
-  })
-);
+const router = express.Router({
+  caseSensitive: true,
+});
 
-app.get("/", (req, res) => {
+app.use(router);
+
+app.get("/about ", (req, res) => {
   res.send("this is home page");
 });
 
