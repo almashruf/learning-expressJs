@@ -1,23 +1,16 @@
-const express = require('express');
+const express = require("express");
 
 const app = express();
-const admin = express();
 
-admin.on('mount',(parent)=>{
-    console.log('admin mounted');
-    console.log('parent');
+app.set("view engine", "ejs");
+
+app.get("/about", (req, res) => {
+  console.log(res.headersSent);
+  res.render("pages/about", {
+    name: "Bangladesh",
+  });
+  console.log(res.headersSent);
 });
-
-admin.get('/dashboard/hello', (req,res)=>{
-    console.log(admin.mountpath);
-    res.send('welcome to admin dashboard');
-})
-
-app.get('/',(req,res)=>{
-    res.send('welcome to application home');
-})
-
-app.use('/admin',admin);
 
 app.listen(3000, () => {
   console.log("listening on port 3000");
