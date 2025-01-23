@@ -4,13 +4,21 @@ const app = express();
 
 app.set("view engine", "ejs");
 
-app.get("/about", (req, res) => {
-  console.log(res.headersSent);
-  res.render("pages/about", {
-    name: "Bangladesh",
-  });
-  console.log(res.headersSent);
-});
+app.get('/about', (req,res)=>{
+  //res.send('About');
+  //res.end();
+  //res.sendStatus(403;);
+
+  res.format({
+    'text/plain':()=>{
+      res.send('hi');
+    }
+  })
+
+  default: ()=>{
+    res.status(406).send('not acceptable');
+  }
+})
 
 app.listen(3000, () => {
   console.log("listening on port 3000");
